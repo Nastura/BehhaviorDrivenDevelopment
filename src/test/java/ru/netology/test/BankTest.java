@@ -53,6 +53,16 @@ public class BankTest {
         assertAll(() -> assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard),
                 () -> assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard));
     }
+
+    @Test
+    void großAmound() {
+            var amount = DataHelper.generateInvalidAmount(balanceSecondCard);
+            var transferPage = dashboardPage.selectCardToTransfer(firstCardInfo);
+            transferPage.makeTransfer(String.valueOf(amount), secondCardInfo);
+            transferPage.error("Ошибка");
+
+        }
+
 }
 
 
