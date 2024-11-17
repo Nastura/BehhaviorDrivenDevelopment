@@ -23,8 +23,8 @@ public class BankTest {
     DashboardPage dashboardPage;
     DataHelper.CardInfo firstCardInfo;
     DataHelper.CardInfo secondCardInfo;
-    int BalanceFirstCard; //Баланс первой карты
-    int BalanceSecondCard;  //Баланс второй карты
+    int balanceFirstCard; //Баланс первой карты
+    int balanceSecondCard;  //Баланс второй карты
 
     @BeforeEach
     void setUp() {
@@ -36,15 +36,15 @@ public class BankTest {
         dashboardPage = verificatinPage.validVerify(verificatinCode);
         firstCardInfo = DataHelper.getFirstCardInfo();
         secondCardInfo = DataHelper.getSecondCardInfo();
-        BalanceFirstCard = dashboardPage.getCardBalance(0);
-        BalanceSecondCard = dashboardPage.getCardBalance(1);
+        balanceFirstCard = dashboardPage.getCardBalance(0);
+        balanceSecondCard = dashboardPage.getCardBalance(1);
     }
 
     @Test
     void transferBetweenKarats() {
-        var amount = DataHelper.generateValidAmount(BalanceFirstCard);
-        var expectedBalanceFirstCard = BalanceFirstCard - amount;
-        var expectedBalanceSecondCard = BalanceSecondCard + amount;
+        var amount = DataHelper.generateValidAmount(balanceFirstCard);
+        var expectedBalanceFirstCard = balanceFirstCard - amount;
+        var expectedBalanceSecondCard = balanceSecondCard + amount;
         var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
         dashboardPage = transferPage.makeValidTransfer(String.valueOf(amount), firstCardInfo);
         dashboardPage.reloadDashboardPage();

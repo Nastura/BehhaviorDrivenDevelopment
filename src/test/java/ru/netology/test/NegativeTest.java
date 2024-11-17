@@ -29,7 +29,7 @@ public class NegativeTest {
         open("http:localhost:9999");
         var loginPage = new LoginPage();
         loginPage.invalidUser(DataHelper.getRandomLogin());
-        $("[data-test-id='error-notification'] .notification__content").shouldBe(exactText("Ошибка! Неверно указан логин или пароль"));
+        loginPage.errorMessage("Ошибка! Неверно указан логин или пароль");
 
     }
 
